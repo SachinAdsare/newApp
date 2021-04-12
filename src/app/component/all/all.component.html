@@ -1,0 +1,35 @@
+
+<div>
+  <div class="px-5 pt-2">
+ <mat-card> <h1>All Matches</h1></mat-card>
+ </div>
+<div class="px-5 pt-2">
+ <mat-card >
+
+  <table class="table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th style="width:30%">Name</th>
+        <th style="width:30%">Location</th>
+        <th style="width:30%"> Contact</th>
+        <th style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allMatches">
+        <td >{{ item.name }}</td>
+        <td >{{ item.location.formattedAddress }}</td>
+        <td >{{ item.contact.phone }}</td>
+        <td>
+          <div class="handPointer" >
+            <div *ngIf="item.saved" (click)="removeFromLocalStorage(item)"><i class="fa fa-star fa-2x"></i></div>
+            <div *ngIf="!item.saved" (click)="addToLocalStorage(item)"><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="loading" style="text-align: center;"> <h3>Loading...</h3></div>
+</mat-card>
+</div>
+</div>
